@@ -1,0 +1,92 @@
+body{
+    margin: 0;
+    padding: 0;
+   
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.3em;
+}
+
+nav{
+    color: white;
+    background-color: #2f3640;
+    padding: 10px;
+    text-align: right;
+    width: 100%;
+    
+}
+
+nav ul{
+          margin-right: 30px;   
+}
+nav li{
+    display: inline;
+    padding: 30px;
+}
+nav a {
+    text-decoration: none;
+    color: white;
+}
+
+#forms{
+    align-items: center;
+    display: inline;
+    margin: auto;
+}
+#login-form{
+
+    /* background-color: violet; */
+     width: 30%;
+    text-align: center;
+   height: 200px;
+    float: left;
+    margin-top: 100px;
+    margin-left: 100px;
+}
+
+#login-form form{
+    margin-top: 50px;
+}
+
+#login-form input{
+     width: 200px;
+    padding: 10px;
+     margin: 8px 0px;
+}
+
+.btn{
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 200px;
+    color: white;
+    background-color: #0097e6;
+    align-content: center;
+  
+}
+
+#div-center{
+    
+    margin-top: 100px;
+    text-align: center;
+
+
+}
+#signup{
+  display: inline-block; 
+}
+
+#signup input{
+    width: 200px;
+    padding: 10px;
+    margin: 8px 0px;
+}
+
+.btn-1{
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    width: 170px;
+    
+
+   background-color: #c23616
+}
