@@ -15,7 +15,7 @@
   
         <div id="login-form">
             <h1>Admin Login</h1>
-                <form>   
+                <form   action="/login" method="POST">   
                     <input type="text" placeholder="Email">
                     <br>
                     <input type="password" placeholder="Password">
@@ -26,12 +26,12 @@
         
         <div id="login-form">
             <h1>Costumer Login</h1>
-                <form>   
-                    <input type="text" placeholder="Email">
+                <form  action="/login" method="POST" >   
+                    <input type="email" name="email" placeholder="Email">
                     <br>
-                    <input type="password" placeholder="Password">
+                    <input type="password" name="password" placeholder="Password">
                     <br>
-                    <button type="submit" class="btn">Login</button>
+                    <button type="submit"   class="btn">Login</button>
                 </form>
         </div>
         

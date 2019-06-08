@@ -12,15 +12,15 @@
         <%- include('../includes/outnavbar.ejs') %>
    <div id="div-center">
 
-    <form  id="signup" >
-           <span></span>
-          <input type="text"  placeholder="Full name">
+    <form  id="signup"  action="/signup" method="post" >
+           <span for="email"></span>
+          <input type="text"  name="name"    id="email"  placeholder="Full name">
           <br>
-          <input type="email" placeholder="Email">
+          <input type="email" name="email" placeholder="Email">
           <br>
-          <input type="password" placeholder="Password">
+          <input type="password" name="password" placeholder="Password">
           <br>
-          <input type="password" placeholder="Confirm Password">
+          <input type="password" name="confirmPassword" placeholder="Confirm Password">
           <br>
           <button type="submit" class="btn-1">Sign up</button>
     </form>

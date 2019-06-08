@@ -2,19 +2,26 @@
 const express =  require('express');
 const path =  require('path');
 const app = express();
-
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const outRoutes = require('./routes/out');
 const shopRoutes = require('./routes/shop');
   
+
+
+
+  
+app.use(bodyParser.urlencoded({ extended: false }));
+
+
+
 app.use(express.static(path.join(__dirname,"public")));
 app.set('view engine','ejs');
 app.set('views','views');
 
-app.use(outRoutes);
-app.use(shopRoutes);
+
 const MONGODB_URI =
   'mongodb+srv://hell:tcvQfcclS2WJv3zM@livecandle-4mrbf.mongodb.net/shop';
 // mongodb+srv://hell:<password>@livecandle-4mrbf.mongodb.net/test
@@ -26,6 +33,10 @@ const store = new MongoDBStore({
     collection: 'sessions'
   });
 
+
+
+
+
   app.use(
     session({
       secret: 'my secret',
@@ -35,7 +46,11 @@ const store = new MongoDBStore({
     })
   );
 
+  app.use(outRoutes);
+  app.use(shopRoutes);
 
+
+  
 mongoose
   .connect(MONGODB_URI)
   .then(result => {
