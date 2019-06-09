@@ -31,6 +31,7 @@
     "express-session": "^1.16.1",
     "express-validator": "^5.3.1",
     "mongoose": "^5.5.13",
+    "multer": "^1.4.1",
     "nodemon": "^1.19.1"
   }
 }
