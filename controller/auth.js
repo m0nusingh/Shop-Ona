@@ -8,7 +8,23 @@ exports.postSignup = (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
     const name  = req.body.name;
+
     const errors = validationResult(req);
+    if(!(password===req.body.confirmPassword))
+    {
+      return res.render('out/signup', {
+        path: '/signup',
+        pageTitle: 'Signup',
+        errorMessage: "Password and confirm Password dont match",
+        oldInput: {
+          email: email,
+          password: password,
+          confirmPassword: req.body.confirmPassword,
+          name: req.body.name
+        },
+        validationErrors: errors.array()
+      });
+    }
     if (!errors.isEmpty()) {
       console.log(errors.array());
       return res.status(422).render('out/signup', {
@@ -17,6 +33,7 @@ exports.postSignup = (req, res, next) => {
         errorMessage: errors.array()[0].msg,
         oldInput: {
           email: email,
+          name: req.body.name,
           password: password,
           confirmPassword: req.body.confirmPassword
         },
@@ -117,4 +134,12 @@ exports.postSignup = (req, res, next) => {
         error.httpStatusCode = 500;
         return next(error);
       });
+  };
+
+
+  exports.postLogout = (req, res, next) => {
+    req.session.destroy(err => {
+      console.log(err);
+      res.redirect('/index');
+    });
   };

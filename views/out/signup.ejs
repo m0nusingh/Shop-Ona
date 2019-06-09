@@ -11,17 +11,24 @@
 <body>
         <%- include('../includes/outnavbar.ejs') %>
    <div id="div-center">
+        <% if (errorMessage) { %>
+            <div class="user-message user-message--error"><%= errorMessage %></div>
+        <% } %>
 
     <form  id="signup"  action="/signup" method="post" >
            <span for="email"></span>
           <input type="text"  name="name"    id="email"  placeholder="Full name">
           <br>
-          <input type="email" name="email" placeholder="Email">
+          <input type="email" name="email"  value="<%= oldInput.email %>" 
+          class="<%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %>"  placeholder="Email">
           <br>
-          <input type="password" name="password" placeholder="Password">
+          <input type="password" name="password"   value="<%= oldInput.password %>"
+          class="<%= validationErrors.find(e => e.param === 'password') ? 'invalid' : '' %>"  placeholder="Password">
           <br>
-          <input type="password" name="confirmPassword" placeholder="Confirm Password">
+          <input type="password" name="confirmPassword"  value="<%= oldInput.confirmPassword %>"
+          class="<%= validationErrors.find(e => e.param === 'confirmPassword') ? 'invalid' : '' %>"  placeholder="Confirm Password">
           <br>
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
           <button type="submit" class="btn-1">Sign up</button>
     </form>
      </div>

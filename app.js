@@ -5,19 +5,21 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
+
+const csrf = require('csurf');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const outRoutes = require('./routes/out');
 const shopRoutes = require('./routes/shop');
+const adminRoutes = require('./routes/admin');  
+
+const csrfProtection = csrf();
+
   
 
 
 
-  
-app.use(bodyParser.urlencoded({ extended: false }));
 
 
-
-app.use(express.static(path.join(__dirname,"public")));
 app.set('view engine','ejs');
 app.set('views','views');
 
@@ -33,9 +35,9 @@ const store = new MongoDBStore({
     collection: 'sessions'
   });
 
-
-
-
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(express.static(path.join(__dirname,"public")));
+  
 
   app.use(
     session({
@@ -45,7 +47,17 @@ const store = new MongoDBStore({
       store: store
     })
   );
+  app.use(csrfProtection);
 
+
+  app.use((req, res, next) => {
+    res.locals.isAuthenticated = req.session.isLoggedIn;
+    res.locals.csrfToken = req.csrfToken();
+    next();
+  });
+ 
+  
+  app.use('/admin',adminRoutes);
   app.use(outRoutes);
   app.use(shopRoutes);
 
@@ -55,7 +67,7 @@ mongoose
   .connect(MONGODB_URI)
   .then(result => {
       console.log('listening on 3000')
-    app.listen(3000);
+    app.listen(3001);
   })
   .catch(err => {
     console.log(err);

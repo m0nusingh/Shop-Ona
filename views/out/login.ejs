@@ -12,25 +12,30 @@
         <%- include('../includes/outnavbar.ejs') %>
    <div id="forms">
 
-  
+        
         <div id="login-form">
             <h1>Admin Login</h1>
-                <form   action="/login" method="POST">   
-                    <input type="text" placeholder="Email">
+                <form   action="/admin/login" method="POST">   
+                    <input type="email" name='email'  value="<%= oldInput.email %>" placeholder="Email">
                     <br>
-                    <input type="password" placeholder="Password">
+                    <input type="password" name='password' placeholder="Password">
                     <br>
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                     <button type="submit" class="btn">Login</button>
                 </form>
         </div>
         
         <div id="login-form">
             <h1>Costumer Login</h1>
+            <% if (errorMessage) { %>
+                <div class="user-message user-message--error"><%= errorMessage %></div>
+            <% } %>
                 <form  action="/login" method="POST" >   
-                    <input type="email" name="email" placeholder="Email">
+                    <input type="email" name="email"  value="<%= oldInput.email %>" placeholder="Email">
                     <br>
-                    <input type="password" name="password" placeholder="Password">
+                    <input type="password" name="password"   placeholder="Password">
                     <br>
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                     <button type="submit"   class="btn">Login</button>
                 </form>
         </div>
