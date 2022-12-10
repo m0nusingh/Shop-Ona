@@ -27,7 +27,7 @@
     "connect-mongodb-session": "^2.1.1",
     "csurf": "^1.10.0",
     "ejs": "^2.6.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-session": "^1.16.1",
     "express-validator": "^5.3.1",
     "mongoose": "^5.5.13",
